@@ -11,11 +11,9 @@ dtparam=audio=on
 dtparam=i2c_arm=on
 dtparam=spi=on
 
-# Enable the KMS ("full" KMS) graphics overlay, and allocate 128Mb to the GPU
-# memory. The full KMS overlay is required for X11 application support under
-# wayland
+# Enable the KMS ("full" KMS) graphics overlay, leaving GPU memory as the
+# default (the kernel is in control of graphics memory with full KMS)
 dtoverlay=vc4-kms-v3d
-gpu_mem=128
 
 # Uncomment the following to enable the Raspberry Pi camera module firmware.
 # Be warned that there *may* be incompatibilities with the "full" KMS overlay
