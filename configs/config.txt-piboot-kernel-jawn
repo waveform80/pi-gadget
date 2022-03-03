@@ -1,0 +1,4 @@
+[all]
+kernel=systems/20220301/kernel/kernel.img
+cmdline=cmdline.txt
+initramfs systems/20220301/kernel/initrd.img followkernel

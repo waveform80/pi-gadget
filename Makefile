@@ -83,7 +83,7 @@ define make_boot_cmdline
 		$(DESTDIR)/boot-assets/cmdline.txt
 endef
 
-default: server
+default: core
 
 server: firmware uboot boot-script config-server device-trees gadget
 
@@ -141,9 +141,10 @@ boot-script: $(SOURCES_RESTRICTED) device-trees $(DESTDIR)/boot-assets
 		-d $(STAGEDIR)/bootscr.rpi $(DESTDIR)/boot-assets/boot.scr
 
 CORE_CFG := \
-	uboot-$(ARCH) \
-	$(if $(call ge,$(SERIES_RELEASE),20.04),uboot-pi0-$(ARCH),) \
-	uboot-core \
+	$(if $(call lt,$(SERIES_RELEASE),22.04),uboot-$(ARCH),) \
+	$(if $(call eq,$(SERIES_RELEASE),20.04),uboot-pi0-$(ARCH),) \
+	$(if $(call lt,$(SERIES_RELEASE),22.04),uboot-core,) \
+	$(if $(call ge,$(SERIES_RELEASE),22.04),piboot-kernel-jawn,) \
 	common \
 	$(if $(call ge,$(SERIES_RELEASE),20.04),cm4-support,) \
 	fkms \

@@ -1,5 +1,5 @@
 name: pi
-version: 20-1
+version: 22-1
 summary: Raspberry Pi gadget
 description: |
  Support files for booting Raspberry Pi.
@@ -16,14 +16,9 @@ parts:
   gadget:
     plugin: nil
     override-build: |
-      if [ "$(arch)" != "aarch64" -a "$(arch)" != "armv7l" ]; then
-        echo "Cross compilation detected; using pre-defined sources list"
-        OPTIONAL_ARGS="SOURCES_HOST=\"./helpers/sources.list.cross\""
-      fi
       make -C ${SNAPCRAFT_PROJECT_DIR:-.} default \
         DESTDIR=${SNAPCRAFT_PART_INSTALL} \
-        ARCH=$(dpkg-architecture -t "${SNAPCRAFT_ARCH_TRIPLET}" -q DEB_HOST_ARCH) \
-        ${OPTIONAL_ARGS:-}
+        ARCH=$(dpkg-architecture -t "${SNAPCRAFT_ARCH_TRIPLET}" -q DEB_HOST_ARCH)
     prime:
       - boot-assets/*
       - uboot.conf
