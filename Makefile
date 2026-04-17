@@ -65,7 +65,7 @@ RESTRICTED_COMPONENT := $(if $(call le,$(SERIES_RELEASE),20.04),universe multive
 OS_PREFIX := $(if $(call ge,$(SERIES_RELEASE),25.10),current/,)
 # From resolute, the main archive is now used instead of ports (eventually this
 # change will make its way back to earlier LTS')
-ARCHIVE_URL := http://$(if $(call ge,$(SERIES_RELEASE),26.04),archive.ubuntu.com/ubuntu,ports.ubuntu.com/ubuntu-ports)/
+ARCHIVE_URL := http://ports.ubuntu.com/ubuntu-ports/
 
 
 # Download the latest version of package $1 for architecture $(ARCH), unpacking
